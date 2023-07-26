@@ -22,6 +22,7 @@ export default class SortingVis extends React.Component{
     this.state={
      array:[],
     };
+    
    }
    componentDidMount(){
     this.resetArray();
@@ -61,26 +62,37 @@ export default class SortingVis extends React.Component{
       const showstyle=SortingAlgo.bubblesortanimation(this.state.array);
       //console.log(showstyle);
       const bar=document.getElementsByClassName('array-bar');
+      var count=this.state.array.length-1;
+      var delay=0;
       for(let i=0;i<showstyle.length;i++){
          const [bar1,bar2]=showstyle[i];
       if(i%2==0){
       setTimeout(() => {
          bar[bar1].style.backgroundColor='blue';
          bar[bar2].style.backgroundColor='blue';
-      },i*10);
+      },delay+=10);
       }else{
          const [bar3,bar4]=showstyle[i-1];
          setTimeout(() => {
             bar[bar3].style.backgroundColor='black';
+            if(bar4==count){
+            bar[bar4].style.backgroundColor='green';
+            count--;
+            }else{
             bar[bar4].style.backgroundColor='black';
-         }, i*10);
+            }
+         }, delay+=2);
          if(bar1!==-1){
             setTimeout(() => {
                bar[bar3].style.height=bar1+'px';
                bar[bar4].style.height=bar2+'px';
-            }, i*10);
+            }, delay+=5);
          }
       }
+      }
+      bar[0].style.backgroundColor='green';
+      for(let i=0;i<this.state.array.length;i++){
+          bar[i].style.backgroundColor='black';
       }
    }
    quicksort(){
@@ -112,22 +124,18 @@ export default class SortingVis extends React.Component{
    insertionsort(){
    const showstyle=SortingAlgo.insertionsortanimaation(this.state.array);
    const bar=document.getElementsByClassName('array-bar');
+   console.log(showstyle);
+   var delay=0;
    for(let i=0;i<showstyle.length;i++){
       const [bar1,bar2,bar3,bar4]=showstyle[i];
       setTimeout(() => {
-         bar[bar1].style.backgroundColor='pink';
-         bar[bar3].style.backgroundColor='orange';
-      }, i*100);
+         bar[bar3].style.backgroundColor='blue';
+      }, delay+=50);
       setTimeout(() => {
-         bar[bar1].style.backgroundColor='black'
          bar[bar3].style.backgroundColor='black';
-      }, i*100);
-      if(bar2!==-1){
-         setTimeout(() => {
-            bar[bar1].style.height=bar2+'px';
-            bar[bar3].style.height=bar4+'px';
-         }, i*100);
-      }
+         bar[bar1].style.height=bar4+'px';
+         bar[bar3].style.height=bar2+'px';
+      }, delay+=10);
    }
    }
 
@@ -135,10 +143,14 @@ export default class SortingVis extends React.Component{
     var array=[];
     var w=window.innerWidth-200;
     console.log(w);
-    for(let i=0;i<w/12;i++){
-        array.push(randomno(8,600));
+    for(let i=0;i<w/15;i++){
+        array.push(randomno(8,550));
     }
     this.setState({array});
+    const bar=document.getElementsByClassName('array-bar');
+    for(let i=0;i<this.state.array.length;i++){
+      bar[i].style.backgroundColor='black';
+   }
    }
    render(){
      const {array}=this.state;//destructing the array {} is used to print in return function
@@ -149,31 +161,28 @@ export default class SortingVis extends React.Component{
             </div>
          ))}
          <div className="butto-placement">
-        <button class='button-86' onClick={() => this.resetArray()} style={{
+        <button class='button' onClick={() => this.resetArray()} style={{
     position:'relative',
     left:'10px',
   }}>New Array</button>
-     <div className="slidecontainer">
-     <input type='range' min='1' max='100' value='50'  id='myRange'/>
-     </div>
-        <button class="button-86" onClick={() => this.mergesort()} style={{
+        <button class="button" onClick={() => this.mergesort()} style={{
     position:'relative',
-    top:'-80px',
+    top:'-50px',
     left:'560px',
   }}>merge sort</button>
-        <button class="button-86" onClick={() => this.bubblesort()}style={{
+        <button class="button" onClick={() => this.bubblesort()}style={{
     position:'relative',
-    top:'-130px',
+    top:'-100px',
     left:'870px',
   }}>bubble sort</button>
-        <button class="button-86" onClick={() => this.quicksort()}style={{
+        <button class="button" onClick={() => this.quicksort()}style={{
     position:'relative',
-    top:'-180px',
+    top:'-150px',
     left:'720px',
   }}>quick sort</button>
-        <button class="button-86" onClick={() => this.insertionsort()}style={{
+        <button class="button" onClick={() => this.insertionsort()}style={{
     position:'relative',
-    top:'-230px',
+    top:'-200px',
     left:'1030px',
   }}>insertion sort</button>
         </div>

@@ -45,8 +45,8 @@ function solvemerge(array,aux,anime,startindex,endindex){
 }
 export function bubblesortanimation(array){
   const animation=[];
-  for(let i=0;i<array.length-2;i++){
-    for(let j=0;j<array.length-2-i;j++){
+  for(let i=0;i<array.length-1;i++){
+    for(let j=0;j<array.length-i-1;j++){
       animation.push([j,j+1]);
       if(array[j]>array[j+1]){
         animation.push([array[j+1],array[j]]);
@@ -128,19 +128,15 @@ function helpquicksort(mainarray,animation,start,end){
 }
 export function insertionsortanimaation(array){
   const animation=[];
-  for(let i=0;i<array.length-1;i++){
-    for(let j=i;j>=0;j--){
-    if(array[j]>array[j+1]){
-      animation.push([j,array[j+1],j+1,array[j]]);
-      let temp=array[j];
-      array[j]=array[j+1];
-      array[j+1]=temp;
-      //animation.push([j,array[j+1],j+1,array[j]]);
-    }else{
-      animation.push([j,-1,j+1,-1]);
-      break;
+  for(let i=1;i<array.length;i++){
+     var j=i-1;
+     var key=array[i];
+     while(j>=0 && key<array[j]){
+      animation.push([j,array[j],j+1,key]);
+      array[j + 1] = array[j];
+      j = j - 1;
+     } 
+     array[j+1]=key;
     }
-    }
-  }
   return animation;
 }
