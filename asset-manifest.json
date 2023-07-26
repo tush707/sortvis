@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/sortvis/static/css/main.0865d327.css",
+    "main.js": "/sortvis/static/js/main.cbaee7b2.js",
+    "static/js/787.077b1483.chunk.js": "/sortvis/static/js/787.077b1483.chunk.js",
+    "static/media/logo.svg": "/sortvis/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/sortvis/index.html",
+    "main.0865d327.css.map": "/sortvis/static/css/main.0865d327.css.map",
+    "main.cbaee7b2.js.map": "/sortvis/static/js/main.cbaee7b2.js.map",
+    "787.077b1483.chunk.js.map": "/sortvis/static/js/787.077b1483.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0865d327.css",
+    "static/js/main.cbaee7b2.js"
+  ]
+}
